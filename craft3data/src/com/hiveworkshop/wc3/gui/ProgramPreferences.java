@@ -59,10 +59,14 @@ public class ProgramPreferences implements Serializable {
 	private Boolean quickBrowse = true;
 	private MouseButtonPreference threeDCameraSpinButton = MouseButtonPreference.LEFT;
 	private MouseButtonPreference threeDCameraPanButton = MouseButtonPreference.MIDDLE;
+	private String uiLanguage = "";
 
 	public void reload() {
 		dimLocks = new boolean[3];
 		actionType = 3;
+		if (uiLanguage == null) {
+			uiLanguage = "";
+		}
 		if (invertedDisplay == null) {
 			invertedDisplay = true;
 		}
@@ -174,6 +178,7 @@ public class ProgramPreferences implements Serializable {
 		this.autoPopulateMdlTextEditor = other.autoPopulateMdlTextEditor;
 		this.disableDirectXToSolveVisualArtifacts = other.disableDirectXToSolveVisualArtifacts;
 		this.alwaysUseMinimalMatricesInHD = other.alwaysUseMinimalMatricesInHD;
+		this.uiLanguage = other.uiLanguage;
 		SaveProfile.save();
 		firePrefsChanged();
 
@@ -660,6 +665,16 @@ public class ProgramPreferences implements Serializable {
 
 	public void setQuickBrowse(final Boolean quickBrowse) {
 		this.quickBrowse = quickBrowse;
+		SaveProfile.save();
+		firePrefsChanged();
+	}
+
+	public String getUiLanguage() {
+		return uiLanguage == null ? "" : uiLanguage;
+	}
+
+	public void setUiLanguage(final String uiLanguage) {
+		this.uiLanguage = uiLanguage == null ? "" : uiLanguage;
 		SaveProfile.save();
 		firePrefsChanged();
 	}

@@ -113,6 +113,7 @@ import org.lwjgl.util.vector.Vector4f;
 import com.hiveworkshop.wc3.gui.BLPHandler;
 import com.hiveworkshop.wc3.gui.ExceptionPopup;
 import com.hiveworkshop.wc3.gui.GUIUtils;
+import com.hiveworkshop.wc3.gui.LanguageBundle;
 import com.hiveworkshop.wc3.gui.LocalizedFontHelper;
 import com.hiveworkshop.wc3.gui.ProgramPreferences;
 import com.hiveworkshop.wc3.gui.animedit.ControllableTimeBoundProvider;
@@ -846,7 +847,7 @@ public class MainPanel extends JPanel
 		public void actionPerformed(final ActionEvent e) {
 			final UnitEditorTree unitEditorTree = createUnitEditorTree();
 			rootWindow.setWindow(new SplitWindow(true, 0.75f, rootWindow.getWindow(),
-					new View("Unit Browser",
+					new View(LanguageBundle.get("view.unit_browser"),
 							new ImageIcon(MainFrame.frame.getIconImage().getScaledInstance(16, 16, Image.SCALE_FAST)),
 							new JScrollPane(unitEditorTree))));
 		}
@@ -893,7 +894,7 @@ public class MainPanel extends JPanel
 				}
 			});
 			rootWindow.setWindow(new SplitWindow(true, 0.75f, rootWindow.getWindow(),
-					new View("Doodad Browser",
+					new View(LanguageBundle.get("view.doodad_browser"),
 							new ImageIcon(MainFrame.frame.getIconImage().getScaledInstance(16, 16, Image.SCALE_FAST)),
 							new JScrollPane(unitEditorTree))));
 		}
@@ -1087,15 +1088,15 @@ public class MainPanel extends JPanel
 		animationModeButton.setVisible(false);// TODO remove this if unused
 
 		contextMenu = new JPopupMenu();
-		contextClose = new JMenuItem("Close");
+		contextClose = new JMenuItem(LanguageBundle.get("menu.file.close"));
 		contextClose.addActionListener(this);
 		contextMenu.add(contextClose);
 
-		contextCloseOthers = new JMenuItem("Close Others");
+		contextCloseOthers = new JMenuItem(LanguageBundle.get("menu.file.close_others"));
 		contextCloseOthers.addActionListener(this);
 		contextMenu.add(contextCloseOthers);
 
-		contextCloseAll = new JMenuItem("Close All");
+		contextCloseAll = new JMenuItem(LanguageBundle.get("menu.file.close_all"));
 		contextCloseAll.addActionListener(this);
 		contextMenu.add(contextCloseAll);
 
@@ -1200,17 +1201,17 @@ public class MainPanel extends JPanel
 		});
 		final JPanel jPanel = new JPanel();
 		jPanel.add(new JLabel("..."));
-		viewportControllerWindowView = new View("Outliner", null, jPanel);// GlobalIcons.geoIcon
+		viewportControllerWindowView = new View(LanguageBundle.get("view.outliner"), null, jPanel);// GlobalIcons.geoIcon
 //		viewportControllerWindowView.getWindowProperties().setCloseEnabled(false);
 //		viewportControllerWindowView.getWindowProperties().setMaximizeEnabled(true);
 //		viewportControllerWindowView.getWindowProperties().setMinimizeEnabled(true);
 //		viewportControllerWindowView.getWindowProperties().setRestoreEnabled(true);
-		toolView = new View("Tools", null, new JPanel());
+		toolView = new View(LanguageBundle.get("view.tools"), null, new JPanel());
 		final JPanel contentsDummy = new JPanel();
 		contentsDummy.add(new JLabel("..."));
-		modelDataView = new View("Contents", null, contentsDummy);
-		tracksView = new View("Tracks", null, new JPanel());
-		modelComponentView = new View("Component", null, new JPanel());
+		modelDataView = new View(LanguageBundle.get("view.contents"), null, contentsDummy);
+		tracksView = new View(LanguageBundle.get("view.tracks"), null, new JPanel());
+		modelComponentView = new View(LanguageBundle.get("view.component"), null, new JPanel());
 //		toolView.getWindowProperties().setCloseEnabled(false);
 		rootWindow.getWindowProperties().getTabProperties().getTitledTabProperties()
 				.setSizePolicy(TitledTabSizePolicy.EQUAL_SIZE);
@@ -1411,10 +1412,10 @@ public class MainPanel extends JPanel
 
 			}
 		});
-		leftView = new View("Side", null, new JPanel());
-		frontView = new View("Front", null, new JPanel());
-		bottomView = new View("Bottom", null, new JPanel());
-		perspectiveView = new View("Perspective", null, new JPanel());
+		leftView = new View(LanguageBundle.get("view.side"), null, new JPanel());
+		frontView = new View(LanguageBundle.get("view.front"), null, new JPanel());
+		bottomView = new View(LanguageBundle.get("view.bottom"), null, new JPanel());
+		perspectiveView = new View(LanguageBundle.get("view.perspective"), null, new JPanel());
 
 		final DefaultStyledDocument panel = new DefaultStyledDocument();
 		final JTextPane epane = new JTextPane();
@@ -1439,7 +1440,7 @@ public class MainPanel extends JPanel
 		}
 		epane.setDocument(panel);
 
-		previewView = new View("Preview", null, new JScrollPane(epane));
+		previewView = new View(LanguageBundle.get("view.preview"), null, new JScrollPane(epane));
 		final JPanel timeSliderAndExtra = new JPanel();
 		final GroupLayout tsaeLayout = new GroupLayout(timeSliderAndExtra);
 		final Component horizontalGlue = Box.createHorizontalGlue();
@@ -1455,7 +1456,7 @@ public class MainPanel extends JPanel
 						.addComponent(horizontalGlue).addComponent(setKeyframe).addComponent(setTimeBounds)));
 		timeSliderAndExtra.setLayout(tsaeLayout);
 
-		timeSliderView = new View("Footer", null, timeSliderAndExtra);
+		timeSliderView = new View(LanguageBundle.get("view.footer"), null, timeSliderAndExtra);
 		final JPanel hackerPanel = new JPanel(new BorderLayout());
 		final RSyntaxTextArea matrixEaterScriptTextArea = new RSyntaxTextArea(20, 60);
 		matrixEaterScriptTextArea.setCodeFoldingEnabled(true);
@@ -1492,7 +1493,7 @@ public class MainPanel extends JPanel
 			}
 		});
 		hackerPanel.add(run, BorderLayout.NORTH);
-		hackerView = new View("Matrix Eater Script", null, hackerPanel);
+		hackerView = new View(LanguageBundle.get("view.script"), null, hackerPanel);
 
 		final JPanel mdlEditorPanel = new JPanel(new BorderLayout());
 
@@ -1572,7 +1573,7 @@ public class MainPanel extends JPanel
 		mdlEditorButtonsPanel.add(mdlTextSearchField);
 		mdlEditorButtonsPanel.add(mdlTextFind);
 		mdlEditorPanel.add(mdlEditorButtonsPanel, BorderLayout.NORTH);
-		mdlTextView = new View("Text", null, mdlEditorPanel);
+		mdlTextView = new View(LanguageBundle.get("view.text"), null, mdlEditorPanel);
 
 		creatorPanel = new CreatorModelingPanel(new ModelEditorChangeActivityListener() {
 
@@ -1582,9 +1583,9 @@ public class MainPanel extends JPanel
 				MainPanel.this.changeActivity(newType);
 			}
 		}, prefs, actionTypeGroup, activeViewportWatcher, animatedRenderEnvironment);
-		creatorView = new View("Modeling", null, creatorPanel);
-		animationControllerView = new View("Animation Controller", null, new JPanel());
-		cameraControllerView = new View("Camera Controller", null, new JPanel());
+		creatorView = new View(LanguageBundle.get("view.modeling"), null, creatorPanel);
+		animationControllerView = new View(LanguageBundle.get("view.animation_controller"), null, new JPanel());
+		cameraControllerView = new View(LanguageBundle.get("view.camera_controller"), null, new JPanel());
 		final TabWindow startupTabWindow = createMainLayout();
 		rootWindow.setWindow(startupTabWindow);
 		rootWindow.getRootWindowProperties().getFloatingWindowProperties().setUseFrame(true);
@@ -1760,7 +1761,7 @@ public class MainPanel extends JPanel
 
 		final UnitEditorTree unitEditorTree = createUnitEditorTree();
 		final TabWindow tabWindow = new TabWindow(new DockingWindow[] {
-				new View("Unit Browser", imageIcon, new JScrollPane(unitEditorTree)), mpqBrowserView });
+				new View(LanguageBundle.get("view.unit_browser"), imageIcon, new JScrollPane(unitEditorTree)), mpqBrowserView });
 		tabWindow.setSelectedTab(0);
 		final SplitWindow viewingTab = new SplitWindow(true, 0.8f, new SplitWindow(true, 0.8f, previewView,
 				new SplitWindow(false, 0.7f, animationControllerView, cameraControllerView)), tabWindow);
@@ -1843,7 +1844,7 @@ public class MainPanel extends JPanel
 				}
 			}
 		});
-		final View view = new View("Data Browser", imageIcon, mpqBrowser);
+		final View view = new View(LanguageBundle.get("view.data_browser"), imageIcon, mpqBrowser);
 		view.getWindowProperties().setCloseEnabled(true);
 		return view;
 	}
@@ -2081,7 +2082,7 @@ public class MainPanel extends JPanel
 	public JToolBar createJToolBar() {
 		toolbar = new JToolBar(JToolBar.HORIZONTAL);
 		toolbar.setFloatable(false);
-		toolbar.add(new AbstractAction("New", RMSIcons.loadToolBarImageIcon("new.png")) {
+		toolbar.add(new AbstractAction(LanguageBundle.get("toolbar.new"), RMSIcons.loadToolBarImageIcon("new.png")) {
 			@Override
 			public void actionPerformed(final ActionEvent e) {
 				try {
@@ -2093,7 +2094,7 @@ public class MainPanel extends JPanel
 				}
 			}
 		});
-		toolbar.add(new AbstractAction("Open", RMSIcons.loadToolBarImageIcon("open.png")) {
+		toolbar.add(new AbstractAction(LanguageBundle.get("toolbar.open"), RMSIcons.loadToolBarImageIcon("open.png")) {
 			@Override
 			public void actionPerformed(final ActionEvent e) {
 				try {
@@ -2105,7 +2106,7 @@ public class MainPanel extends JPanel
 				}
 			}
 		});
-		toolbar.add(new AbstractAction("Save", RMSIcons.loadToolBarImageIcon("save.png")) {
+		toolbar.add(new AbstractAction(LanguageBundle.get("toolbar.save"), RMSIcons.loadToolBarImageIcon("save.png")) {
 			@Override
 			public void actionPerformed(final ActionEvent e) {
 				try {
@@ -2118,7 +2119,7 @@ public class MainPanel extends JPanel
 			}
 		});
 		toolbar.addSeparator();
-		toolbar.add(new AbstractAction("Undo", RMSIcons.loadToolBarImageIcon("undo.png")) {
+		toolbar.add(new AbstractAction(LanguageBundle.get("toolbar.undo"), RMSIcons.loadToolBarImageIcon("undo.png")) {
 			@Override
 			public void actionPerformed(final ActionEvent e) {
 				try {
@@ -2134,7 +2135,7 @@ public class MainPanel extends JPanel
 				repaint();
 			}
 		});
-		toolbar.add(new AbstractAction("Redo", RMSIcons.loadToolBarImageIcon("redo.png")) {
+		toolbar.add(new AbstractAction(LanguageBundle.get("toolbar.redo"), RMSIcons.loadToolBarImageIcon("redo.png")) {
 			@Override
 			public void actionPerformed(final ActionEvent e) {
 				try {
@@ -2220,7 +2221,7 @@ public class MainPanel extends JPanel
 						selectAndScaleDescriptor, selectAndExtrudeDescriptor, selectAndExtendDescriptor, });
 		currentActivity = actionTypeGroup.getActiveButtonType();
 		toolbar.addSeparator();
-		snapButton = toolbar.add(new AbstractAction("Snap", RMSIcons.loadToolBarImageIcon("snap.png")) {
+		snapButton = toolbar.add(new AbstractAction(LanguageBundle.get("toolbar.snap"), RMSIcons.loadToolBarImageIcon("snap.png")) {
 			@Override
 			public void actionPerformed(final ActionEvent e) {
 				try {
@@ -2744,36 +2745,36 @@ public class MainPanel extends JPanel
 		menuBar = new JMenuBar();
 
 		// Build the file menu
-		fileMenu = new JMenu("File");
+		fileMenu = new JMenu(LanguageBundle.get("menu.file"));
 		fileMenu.setMnemonic(KeyEvent.VK_F);
 		fileMenu.getAccessibleContext()
 				.setAccessibleDescription("Allows the user to open, save, close, and manipulate files.");
 		menuBar.add(fileMenu);
 
-		recentMenu = new JMenu("Open Recent");
+		recentMenu = new JMenu(LanguageBundle.get("menu.file.open_recent"));
 		recentMenu.setMnemonic(KeyEvent.VK_R);
 		recentMenu.getAccessibleContext().setAccessibleDescription("Allows you to access recently opened files.");
 
-		editMenu = new JMenu("Edit");
+		editMenu = new JMenu(LanguageBundle.get("menu.edit"));
 		editMenu.setMnemonic(KeyEvent.VK_E);
 		// editMenu.addMouseListener(this);
 		editMenu.getAccessibleContext()
 				.setAccessibleDescription("Allows the user to use various tools to edit the currently selected model.");
 		menuBar.add(editMenu);
 
-		toolsMenu = new JMenu("Tools");
+		toolsMenu = new JMenu(LanguageBundle.get("menu.tools"));
 		toolsMenu.setMnemonic(KeyEvent.VK_T);
 		toolsMenu.getAccessibleContext().setAccessibleDescription(
 				"Allows the user to use various model editing tools. (You must open a model before you may use this menu.)");
 		toolsMenu.setEnabled(false);
 		menuBar.add(toolsMenu);
 
-		viewMenu = new JMenu("View");
+		viewMenu = new JMenu(LanguageBundle.get("menu.view"));
 		// viewMenu.setMnemonic(KeyEvent.VK_V);
 		viewMenu.getAccessibleContext().setAccessibleDescription("Allows the user to control view settings.");
 		menuBar.add(viewMenu);
 
-		teamColorMenu = new JMenu("Team Color");
+		teamColorMenu = new JMenu(LanguageBundle.get("menu.team_color"));
 		teamColorMenu.getAccessibleContext()
 				.setAccessibleDescription("Allows the user to control team color settings.");
 		menuBar.add(teamColorMenu);
@@ -2796,13 +2797,13 @@ public class MainPanel extends JPanel
 		});
 		createTeamColorMenuItems();
 
-		windowMenu = new JMenu("Window");
+		windowMenu = new JMenu(LanguageBundle.get("menu.window"));
 		windowMenu.setMnemonic(KeyEvent.VK_W);
 		windowMenu.getAccessibleContext()
 				.setAccessibleDescription("Allows the user to open various windows containing the program features.");
 		menuBar.add(windowMenu);
 
-		final JMenuItem resetViewButton = new JMenuItem("Reset Layout");
+		final JMenuItem resetViewButton = new JMenuItem(LanguageBundle.get("menu.window.reset_layout"));
 		resetViewButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(final ActionEvent e) {
@@ -2814,7 +2815,7 @@ public class MainPanel extends JPanel
 		});
 		windowMenu.add(resetViewButton);
 
-		final JMenu viewsMenu = new JMenu("Views");
+		final JMenu viewsMenu = new JMenu(LanguageBundle.get("menu.window.views"));
 		viewsMenu.setMnemonic(KeyEvent.VK_V);
 		windowMenu.add(viewsMenu);
 
@@ -2844,123 +2845,123 @@ public class MainPanel extends JPanel
 
 //		viewsMenu.add(testItem);
 
-		animationViewer = new JMenuItem("Animation Preview");
+		animationViewer = new JMenuItem(LanguageBundle.get("menu.window.animation_preview"));
 		animationViewer.setMnemonic(KeyEvent.VK_A);
 		animationViewer.addActionListener(openAnimationViewerAction);
 		viewsMenu.add(animationViewer);
 
-		animationController = new JMenuItem("Animation Controller");
+		animationController = new JMenuItem(LanguageBundle.get("menu.window.animation_controller"));
 		animationController.setMnemonic(KeyEvent.VK_C);
 		animationController.addActionListener(openAnimationControllerAction);
 		viewsMenu.add(animationController);
 
-		cameraController = new JMenuItem("Camera Controller");
+		cameraController = new JMenuItem(LanguageBundle.get("menu.window.camera_controller"));
 		cameraController.addActionListener(openCameraControllerAction);
 		viewsMenu.add(cameraController);
 
 		viewsMenu.addSeparator();
 
-		modelingTab = new JMenuItem("Modeling");
+		modelingTab = new JMenuItem(LanguageBundle.get("menu.window.modeling"));
 		modelingTab.setMnemonic(KeyEvent.VK_M);
 		modelingTab.addActionListener(openModelingTabAction);
 		viewsMenu.add(modelingTab);
 
-		final JMenuItem outlinerItem = new JMenuItem("Outliner");
+		final JMenuItem outlinerItem = new JMenuItem(LanguageBundle.get("menu.window.outliner"));
 		outlinerItem.setMnemonic(KeyEvent.VK_O);
 		outlinerItem.addActionListener(openOutlinerAction);
 		viewsMenu.add(outlinerItem);
 
-		final JMenuItem perspectiveItem = new JMenuItem("Perspective");
+		final JMenuItem perspectiveItem = new JMenuItem(LanguageBundle.get("menu.window.perspective"));
 		perspectiveItem.setMnemonic(KeyEvent.VK_P);
 		perspectiveItem.addActionListener(openPerspectiveAction);
 		viewsMenu.add(perspectiveItem);
 
-		final JMenuItem frontItem = new JMenuItem("Front");
+		final JMenuItem frontItem = new JMenuItem(LanguageBundle.get("menu.window.front"));
 		frontItem.setMnemonic(KeyEvent.VK_F);
 		frontItem.addActionListener(openFrontAction);
 		viewsMenu.add(frontItem);
 
-		final JMenuItem sideItem = new JMenuItem("Side");
+		final JMenuItem sideItem = new JMenuItem(LanguageBundle.get("menu.window.side"));
 		sideItem.setMnemonic(KeyEvent.VK_S);
 		sideItem.addActionListener(openSideAction);
 		viewsMenu.add(sideItem);
 
-		final JMenuItem bottomItem = new JMenuItem("Bottom");
+		final JMenuItem bottomItem = new JMenuItem(LanguageBundle.get("menu.window.bottom"));
 		bottomItem.setMnemonic(KeyEvent.VK_B);
 		bottomItem.addActionListener(openBottomAction);
 		viewsMenu.add(bottomItem);
 
-		final JMenuItem toolsItem = new JMenuItem("Tools");
+		final JMenuItem toolsItem = new JMenuItem(LanguageBundle.get("menu.window.tools"));
 		toolsItem.setMnemonic(KeyEvent.VK_T);
 		toolsItem.addActionListener(openToolsAction);
 		viewsMenu.add(toolsItem);
 
-		final JMenuItem timeItem = new JMenuItem("Footer");
+		final JMenuItem timeItem = new JMenuItem(LanguageBundle.get("menu.window.footer"));
 		timeItem.addActionListener(openTimeSliderAction);
 		viewsMenu.add(timeItem);
 
 		viewsMenu.addSeparator();
 
-		final JMenuItem tracksItem = new JMenuItem("Tracks");
+		final JMenuItem tracksItem = new JMenuItem(LanguageBundle.get("menu.window.tracks"));
 		tracksItem.addActionListener(openTracksViewAction);
 		viewsMenu.add(tracksItem);
 
 		viewsMenu.addSeparator();
 
-		final JMenuItem contentsItem = new JMenuItem("Contents");
+		final JMenuItem contentsItem = new JMenuItem(LanguageBundle.get("menu.window.contents"));
 		contentsItem.setMnemonic(KeyEvent.VK_M);
 		contentsItem.addActionListener(openModelDataContentsViewAction);
 		viewsMenu.add(contentsItem);
 
-		final JMenuItem componentItem = new JMenuItem("Component");
+		final JMenuItem componentItem = new JMenuItem(LanguageBundle.get("menu.window.component"));
 		componentItem.setMnemonic(KeyEvent.VK_C);
 		componentItem.addActionListener(openModelDataComponentsViewAction);
 		viewsMenu.add(componentItem);
 
 		viewsMenu.addSeparator();
 
-		final JMenuItem textItem = new JMenuItem("Text");
+		final JMenuItem textItem = new JMenuItem(LanguageBundle.get("menu.window.text"));
 		textItem.addActionListener(openTextViewAction);
 		viewsMenu.add(textItem);
 
-		final JMenuItem hackerViewItem = new JMenuItem("Matrix Eater Script");
+		final JMenuItem hackerViewItem = new JMenuItem(LanguageBundle.get("menu.window.script"));
 		hackerViewItem.setMnemonic(KeyEvent.VK_H);
 		hackerViewItem.setAccelerator(KeyStroke.getKeyStroke("control P"));
 		hackerViewItem.addActionListener(hackerViewAction);
 		viewsMenu.add(hackerViewItem);
 
-		final JMenu browsersMenu = new JMenu("Browsers");
+		final JMenu browsersMenu = new JMenu(LanguageBundle.get("menu.window.browsers"));
 		browsersMenu.setMnemonic(KeyEvent.VK_B);
 		windowMenu.add(browsersMenu);
 
-		mpqViewer = new JMenuItem("Data Browser");
+		mpqViewer = new JMenuItem(LanguageBundle.get("menu.window.data_browser"));
 		mpqViewer.setMnemonic(KeyEvent.VK_A);
 		mpqViewer.addActionListener(openMPQViewerAction);
 		browsersMenu.add(mpqViewer);
 
-		unitViewer = new JMenuItem("Unit Browser");
+		unitViewer = new JMenuItem(LanguageBundle.get("menu.window.unit_browser"));
 		unitViewer.setMnemonic(KeyEvent.VK_U);
 		unitViewer.addActionListener(openUnitViewerAction);
 		browsersMenu.add(unitViewer);
 
-		final JMenuItem doodadViewer = new JMenuItem("Doodad Browser");
+		final JMenuItem doodadViewer = new JMenuItem(LanguageBundle.get("menu.window.doodad_browser"));
 		doodadViewer.setMnemonic(KeyEvent.VK_D);
 		doodadViewer.addActionListener(openDoodadViewerAction);
 		browsersMenu.add(doodadViewer);
 
-		hiveViewer = new JMenuItem("Hive Browser");
+		hiveViewer = new JMenuItem(LanguageBundle.get("menu.window.hive_browser"));
 		hiveViewer.setMnemonic(KeyEvent.VK_H);
 		hiveViewer.addActionListener(openHiveViewerAction);
 //		browsersMenu.add(hiveViewer);
 
 		windowMenu.addSeparator();
 
-		addMenu = new JMenu("Add");
+		addMenu = new JMenu(LanguageBundle.get("menu.add"));
 		addMenu.setMnemonic(KeyEvent.VK_A);
 		addMenu.getAccessibleContext().setAccessibleDescription("Allows the user to add new components to the model.");
 		menuBar.add(addMenu);
 
-		addParticle = new JMenu("Particle");
+		addParticle = new JMenu(LanguageBundle.get("menu.add.particle"));
 		addParticle.setMnemonic(KeyEvent.VK_P);
 		addMenu.add(addParticle);
 
@@ -3162,64 +3163,64 @@ public class MainPanel extends JPanel
 			}
 		}
 
-		animationMenu = new JMenu("Animation");
+		animationMenu = new JMenu(LanguageBundle.get("menu.add.animation"));
 		animationMenu.setMnemonic(KeyEvent.VK_A);
 		addMenu.add(animationMenu);
 
-		riseFallBirth = new JMenuItem("Rising/Falling Birth/Death");
+		riseFallBirth = new JMenuItem(LanguageBundle.get("menu.add.animation.rise_fall"));
 		riseFallBirth.setMnemonic(KeyEvent.VK_R);
 		riseFallBirth.addActionListener(this);
 		animationMenu.add(riseFallBirth);
 
-		singleAnimationMenu = new JMenu("Single");
+		singleAnimationMenu = new JMenu(LanguageBundle.get("menu.add.animation.single"));
 		singleAnimationMenu.setMnemonic(KeyEvent.VK_S);
 		animationMenu.add(singleAnimationMenu);
 
-		animFromFile = new JMenuItem("From File");
+		animFromFile = new JMenuItem(LanguageBundle.get("menu.add.animation.from_file"));
 		animFromFile.setMnemonic(KeyEvent.VK_F);
 		animFromFile.addActionListener(this);
 		singleAnimationMenu.add(animFromFile);
 
-		animFromUnit = new JMenuItem("From Unit");
+		animFromUnit = new JMenuItem(LanguageBundle.get("menu.add.animation.from_unit"));
 		animFromUnit.setMnemonic(KeyEvent.VK_U);
 		animFromUnit.addActionListener(this);
 		singleAnimationMenu.add(animFromUnit);
 
-		animFromModel = new JMenuItem("From Model");
+		animFromModel = new JMenuItem(LanguageBundle.get("menu.add.animation.from_model"));
 		animFromModel.setMnemonic(KeyEvent.VK_M);
 		animFromModel.addActionListener(this);
 		singleAnimationMenu.add(animFromModel);
 
-		animFromObject = new JMenuItem("From Object");
+		animFromObject = new JMenuItem(LanguageBundle.get("menu.add.animation.from_object"));
 		animFromObject.setMnemonic(KeyEvent.VK_O);
 		animFromObject.addActionListener(this);
 		singleAnimationMenu.add(animFromObject);
 
-		scriptsMenu = new JMenu("Scripts");
+		scriptsMenu = new JMenu(LanguageBundle.get("menu.scripts"));
 		scriptsMenu.setMnemonic(KeyEvent.VK_A);
 		scriptsMenu.getAccessibleContext().setAccessibleDescription("Allows the user to execute model edit scripts.");
 		menuBar.add(scriptsMenu);
 
-		importButtonS = new JMenuItem("Oinkerwinkle-Style AnimTransfer");
+		importButtonS = new JMenuItem(LanguageBundle.get("menu.scripts.anim_transfer"));
 		importButtonS.setAccelerator(KeyStroke.getKeyStroke("control shift S"));
 		importButtonS.setMnemonic(KeyEvent.VK_P);
 		importButtonS.addActionListener(this);
 		// importButtonS.setEnabled(false);
 		scriptsMenu.add(importButtonS);
 
-		mergeGeoset = new JMenuItem("Oinkerwinkle-Style Merge Geoset");
+		mergeGeoset = new JMenuItem(LanguageBundle.get("menu.scripts.merge_geoset"));
 		mergeGeoset.setAccelerator(KeyStroke.getKeyStroke("control M"));
 		mergeGeoset.setMnemonic(KeyEvent.VK_M);
 		mergeGeoset.addActionListener(this);
 		scriptsMenu.add(mergeGeoset);
 
-		nullmodelButton = new JMenuItem("Edit/delete model components");
+		nullmodelButton = new JMenuItem(LanguageBundle.get("menu.scripts.edit_components"));
 		nullmodelButton.setAccelerator(KeyStroke.getKeyStroke("control E"));
 		nullmodelButton.setMnemonic(KeyEvent.VK_E);
 		nullmodelButton.addActionListener(this);
 		scriptsMenu.add(nullmodelButton);
 
-		exportAnimatedToStaticMesh = new JMenuItem("Export Animated to Static Mesh");
+		exportAnimatedToStaticMesh = new JMenuItem(LanguageBundle.get("menu.scripts.export_static"));
 		exportAnimatedToStaticMesh.setMnemonic(KeyEvent.VK_E);
 		exportAnimatedToStaticMesh.addActionListener(new ActionListener() {
 			@Override
@@ -3384,7 +3385,7 @@ public class MainPanel extends JPanel
 		});
 		scriptsMenu.add(exportAnimatedToStaticMesh);
 
-		exportAnimatedFramePNG = new JMenuItem("Export Animated Frame PNG");
+		exportAnimatedFramePNG = new JMenuItem(LanguageBundle.get("menu.scripts.export_frame_png"));
 		exportAnimatedFramePNG.setMnemonic(KeyEvent.VK_F);
 		exportAnimatedFramePNG.addActionListener(new ActionListener() {
 			@Override
@@ -3449,7 +3450,7 @@ public class MainPanel extends JPanel
 		});
 		scriptsMenu.add(exportAnimatedFramePNG);
 
-		combineAnims = new JMenuItem("Create Back2Back Animation");
+		combineAnims = new JMenuItem(LanguageBundle.get("menu.scripts.back2back"));
 		combineAnims.setMnemonic(KeyEvent.VK_P);
 		combineAnims.addActionListener(new ActionListener() {
 			@Override
@@ -3491,12 +3492,12 @@ public class MainPanel extends JPanel
 		});
 		scriptsMenu.add(combineAnims);
 
-		scaleAnimations = new JMenuItem("Change Animation Lengths by Scaling");
+		scaleAnimations = new JMenuItem(LanguageBundle.get("menu.scripts.scale_anims"));
 		scaleAnimations.setMnemonic(KeyEvent.VK_A);
 		scaleAnimations.addActionListener(this);
 		scriptsMenu.add(scaleAnimations);
 
-		final JMenuItem version800Toggle = new JMenuItem("Assign FormatVersion 800");
+		final JMenuItem version800Toggle = new JMenuItem(LanguageBundle.get("menu.scripts.format_800"));
 		version800Toggle.setMnemonic(KeyEvent.VK_A);
 		version800Toggle.addActionListener(new ActionListener() {
 			@Override
@@ -3506,7 +3507,7 @@ public class MainPanel extends JPanel
 		});
 		scriptsMenu.add(version800Toggle);
 
-		final JMenuItem version1000Toggle = new JMenuItem("Assign FormatVersion 1000");
+		final JMenuItem version1000Toggle = new JMenuItem(LanguageBundle.get("menu.scripts.format_1000"));
 		version1000Toggle.setMnemonic(KeyEvent.VK_A);
 		version1000Toggle.addActionListener(new ActionListener() {
 			@Override
@@ -3516,7 +3517,7 @@ public class MainPanel extends JPanel
 		});
 		scriptsMenu.add(version1000Toggle);
 
-		final JMenuItem makeItHDItem = new JMenuItem("SD -> HD (highly experimental, requires 900 or 1000)");
+		final JMenuItem makeItHDItem = new JMenuItem(LanguageBundle.get("menu.scripts.sd_to_hd"));
 		makeItHDItem.setMnemonic(KeyEvent.VK_A);
 		makeItHDItem.addActionListener(new ActionListener() {
 			@Override
@@ -3526,7 +3527,7 @@ public class MainPanel extends JPanel
 		});
 		scriptsMenu.add(makeItHDItem);
 
-		final JMenuItem version800EditingToggle = new JMenuItem("HD -> SD with older code (becomes 800)");
+		final JMenuItem version800EditingToggle = new JMenuItem(LanguageBundle.get("menu.scripts.hd_to_sd_old"));
 		version800EditingToggle.setMnemonic(KeyEvent.VK_A);
 		version800EditingToggle.addActionListener(new ActionListener() {
 			@Override
@@ -3536,7 +3537,7 @@ public class MainPanel extends JPanel
 		});
 		scriptsMenu.add(version800EditingToggle);
 
-		final JMenuItem version800BakingToggle = new JMenuItem("HD -> SD with texture baking (becomes 800)");
+		final JMenuItem version800BakingToggle = new JMenuItem(LanguageBundle.get("menu.scripts.hd_to_sd_bake"));
 		version800BakingToggle.setMnemonic(KeyEvent.VK_A);
 		version800BakingToggle.addActionListener(new ActionListener() {
 			@Override
@@ -3570,7 +3571,7 @@ public class MainPanel extends JPanel
 		});
 		scriptsMenu.add(recalculateTangents);
 
-		final JMenuItem skinSpliceFromFile = new JMenuItem("From File");
+		final JMenuItem skinSpliceFromFile = new JMenuItem(LanguageBundle.get("menu.add.animation.from_file"));
 		skinSpliceFromFile.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(final ActionEvent e) {
@@ -3582,7 +3583,7 @@ public class MainPanel extends JPanel
 				}
 			}
 		});
-		final JMenuItem skinSpliceFromWorkspace = new JMenuItem("From Workspace");
+		final JMenuItem skinSpliceFromWorkspace = new JMenuItem(LanguageBundle.get("menu.file.import.from_workspace"));
 		skinSpliceFromWorkspace.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(final ActionEvent e) {
@@ -3600,7 +3601,7 @@ public class MainPanel extends JPanel
 				}
 			}
 		});
-		final JMenuItem skinSpliceFromModel = new JMenuItem("From Model");
+		final JMenuItem skinSpliceFromModel = new JMenuItem(LanguageBundle.get("menu.add.animation.from_model"));
 		skinSpliceFromModel.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(final ActionEvent evt) {
@@ -3628,7 +3629,7 @@ public class MainPanel extends JPanel
 				}
 			}
 		});
-		final JMenuItem skinSpliceFromUnit = new JMenuItem("From Unit");
+		final JMenuItem skinSpliceFromUnit = new JMenuItem(LanguageBundle.get("menu.add.animation.from_unit"));
 		skinSpliceFromUnit.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(final ActionEvent evt) {
@@ -3656,25 +3657,25 @@ public class MainPanel extends JPanel
 				}
 			}
 		});
-		final JMenu skinSplice = new JMenu("Skin Splice Mesh into Current");
+		final JMenu skinSplice = new JMenu(LanguageBundle.get("menu.scripts.skin_splice"));
 		skinSplice.add(skinSpliceFromFile);
 		skinSplice.add(skinSpliceFromWorkspace);
 		skinSplice.add(skinSpliceFromModel);
 		skinSplice.add(skinSpliceFromUnit);
 		scriptsMenu.add(skinSplice);
 
-		final JMenuItem removeAll3D = new JMenuItem("Remove All 3D");
+		final JMenuItem removeAll3D = new JMenuItem(LanguageBundle.get("menu.scripts.remove_all_3d"));
 		removeAll3D.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(final ActionEvent e) {
 				currentMDL().removeMesh();
 			}
 		});
-		final JMenu forDarkfang = new JMenu("For Darkfang");
+		final JMenu forDarkfang = new JMenu(LanguageBundle.get("menu.scripts.for_darkfang"));
 		forDarkfang.add(removeAll3D);
 		scriptsMenu.add(forDarkfang);
 
-		final JMenuItem selectHDUnused = new JMenuItem("Select HD Unused Bones");
+		final JMenuItem selectHDUnused = new JMenuItem(LanguageBundle.get("menu.scripts.select_hd_unused"));
 		selectHDUnused.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(final ActionEvent e) {
@@ -3688,7 +3689,7 @@ public class MainPanel extends JPanel
 		});
 		scriptsMenu.add(selectHDUnused);
 
-		final JMenuItem deleteDownToOneTVerticesLayer = new JMenuItem("Delete all TVertices layers beyond the first");
+		final JMenuItem deleteDownToOneTVerticesLayer = new JMenuItem(LanguageBundle.get("menu.scripts.delete_tvertices"));
 		deleteDownToOneTVerticesLayer.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(final ActionEvent e) {
@@ -3707,7 +3708,7 @@ public class MainPanel extends JPanel
 		});
 		scriptsMenu.add(deleteDownToOneTVerticesLayer);
 
-		final JMenuItem relinkBoneRFWeapon = new JMenuItem("Re-link Bone (Such as RF Weapon)");
+		final JMenuItem relinkBoneRFWeapon = new JMenuItem(LanguageBundle.get("menu.scripts.relink_bone"));
 		relinkBoneRFWeapon.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(final ActionEvent e) {
@@ -3754,7 +3755,7 @@ public class MainPanel extends JPanel
 		});
 		scriptsMenu.add(relinkBoneRFWeapon);
 
-		final JMenuItem deleteLODs = new JMenuItem("Delete LODs");
+		final JMenuItem deleteLODs = new JMenuItem(LanguageBundle.get("menu.scripts.delete_lods"));
 		deleteLODs.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(final ActionEvent e) {
@@ -3786,7 +3787,7 @@ public class MainPanel extends JPanel
 		});
 		scriptsMenu.add(deleteLODs);
 
-		final JMenuItem jokebutton = new JMenuItem("Load Retera Land");
+		final JMenuItem jokebutton = new JMenuItem(LanguageBundle.get("menu.scripts.load_retera_land"));
 		jokebutton.setMnemonic(KeyEvent.VK_A);
 		jokebutton.addActionListener(new ActionListener() {
 			@Override
@@ -3850,7 +3851,7 @@ public class MainPanel extends JPanel
 		});
 //		scriptsMenu.add(jokebutton);
 
-		final JMenuItem fixReteraLand = new JMenuItem("Fix Retera Land");
+		final JMenuItem fixReteraLand = new JMenuItem(LanguageBundle.get("menu.scripts.fix_retera_land"));
 		fixReteraLand.setMnemonic(KeyEvent.VK_A);
 		fixReteraLand.addActionListener(new ActionListener() {
 			@Override
@@ -3864,50 +3865,50 @@ public class MainPanel extends JPanel
 		});
 //		scriptsMenu.add(fixReteraLand);
 
-		aboutMenu = new JMenu("Help");
+		aboutMenu = new JMenu(LanguageBundle.get("menu.help"));
 		aboutMenu.setMnemonic(KeyEvent.VK_H);
 		menuBar.add(aboutMenu);
 
 		recentMenu.add(new JSeparator());
 
-		clearRecent = new JMenuItem("Clear");
+		clearRecent = new JMenuItem(LanguageBundle.get("menu.clear"));
 		clearRecent.setMnemonic(KeyEvent.VK_C);
 		clearRecent.addActionListener(this);
 		recentMenu.add(clearRecent);
 
-		changelogButton = new JMenuItem("Changelog");
+		changelogButton = new JMenuItem(LanguageBundle.get("menu.help.changelog"));
 		changelogButton.setMnemonic(KeyEvent.VK_A);
 		changelogButton.addActionListener(this);
 		aboutMenu.add(changelogButton);
 
-		creditsButton = new JMenuItem("About");
+		creditsButton = new JMenuItem(LanguageBundle.get("menu.help.about"));
 		creditsButton.setMnemonic(KeyEvent.VK_A);
 		creditsButton.addActionListener(this);
 		aboutMenu.add(creditsButton);
 
-		showMatrices = new JMenuItem("View Selected \"Matrices\"");
+		showMatrices = new JMenuItem(LanguageBundle.get("menu.tools.view_matrices"));
 		// showMatrices.setMnemonic(KeyEvent.VK_V);
 		showMatrices.addActionListener(viewMatricesAction);
 		toolsMenu.add(showMatrices);
 
-		insideOut = new JMenuItem("Flip all selected faces");
+		insideOut = new JMenuItem(LanguageBundle.get("menu.tools.flip_faces"));
 		insideOut.setMnemonic(KeyEvent.VK_I);
 		insideOut.addActionListener(insideOutAction);
 		insideOut.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_G, KeyEvent.CTRL_DOWN_MASK));
 		toolsMenu.add(insideOut);
 
-		insideOutNormals = new JMenuItem("Flip all selected normals");
+		insideOutNormals = new JMenuItem(LanguageBundle.get("menu.tools.flip_normals"));
 		insideOutNormals.addActionListener(insideOutNormalsAction);
 		toolsMenu.add(insideOutNormals);
 
 		toolsMenu.add(new JSeparator());
 
-		editUVs = new JMenuItem("Edit UV Mapping");
+		editUVs = new JMenuItem(LanguageBundle.get("menu.tools.edit_uvs"));
 		editUVs.setMnemonic(KeyEvent.VK_U);
 		editUVs.addActionListener(this);
 		toolsMenu.add(editUVs);
 
-		editTextures = new JMenuItem("Edit Textures");
+		editTextures = new JMenuItem(LanguageBundle.get("menu.tools.edit_textures"));
 		editTextures.setMnemonic(KeyEvent.VK_T);
 		editTextures.addActionListener(new ActionListener() {
 			@Override
@@ -3925,65 +3926,65 @@ public class MainPanel extends JPanel
 		});
 		toolsMenu.add(editTextures);
 
-		rigButton = new JMenuItem("Rig Selection");
+		rigButton = new JMenuItem(LanguageBundle.get("menu.tools.rig"));
 		rigButton.setMnemonic(KeyEvent.VK_R);
 		rigButton.setAccelerator(KeyStroke.getKeyStroke("control W"));
 		rigButton.addActionListener(rigAction);
 		toolsMenu.add(rigButton);
 
-		tweaksSubmenu = new JMenu("Tweaks");
+		tweaksSubmenu = new JMenu(LanguageBundle.get("menu.tools.tweaks"));
 		tweaksSubmenu.setMnemonic(KeyEvent.VK_T);
 		tweaksSubmenu.getAccessibleContext().setAccessibleDescription("Allows the user to tweak conversion mistakes.");
 		toolsMenu.add(tweaksSubmenu);
 
-		flipAllUVsU = new JMenuItem("Flip All UVs U");
+		flipAllUVsU = new JMenuItem(LanguageBundle.get("menu.tools.tweaks.flip_uvs_u"));
 		flipAllUVsU.setMnemonic(KeyEvent.VK_U);
 		flipAllUVsU.addActionListener(flipAllUVsUAction);
 		tweaksSubmenu.add(flipAllUVsU);
 
-		flipAllUVsV = new JMenuItem("Flip All UVs V");
+		flipAllUVsV = new JMenuItem(LanguageBundle.get("menu.tools.tweaks.flip_uvs_v"));
 		// flipAllUVsV.setMnemonic(KeyEvent.VK_V);
 		flipAllUVsV.addActionListener(flipAllUVsVAction);
 		tweaksSubmenu.add(flipAllUVsV);
 
-		inverseAllUVs = new JMenuItem("Swap All UVs U for V");
+		inverseAllUVs = new JMenuItem(LanguageBundle.get("menu.tools.tweaks.swap_uvs"));
 		inverseAllUVs.setMnemonic(KeyEvent.VK_S);
 		inverseAllUVs.addActionListener(inverseAllUVsAction);
 		tweaksSubmenu.add(inverseAllUVs);
 
-		mirrorSubmenu = new JMenu("Mirror");
+		mirrorSubmenu = new JMenu(LanguageBundle.get("menu.tools.mirror"));
 		mirrorSubmenu.setMnemonic(KeyEvent.VK_M);
 		mirrorSubmenu.getAccessibleContext().setAccessibleDescription("Allows the user to mirror objects.");
 		toolsMenu.add(mirrorSubmenu);
 
-		mirrorX = new JMenuItem("Mirror X");
+		mirrorX = new JMenuItem(LanguageBundle.get("menu.tools.mirror.x"));
 		mirrorX.setMnemonic(KeyEvent.VK_X);
 		mirrorX.addActionListener(mirrorXAction);
 		mirrorSubmenu.add(mirrorX);
 
-		mirrorY = new JMenuItem("Mirror Y");
+		mirrorY = new JMenuItem(LanguageBundle.get("menu.tools.mirror.y"));
 		mirrorY.setMnemonic(KeyEvent.VK_Y);
 		mirrorY.addActionListener(mirrorYAction);
 		mirrorSubmenu.add(mirrorY);
 
-		mirrorZ = new JMenuItem("Mirror Z");
+		mirrorZ = new JMenuItem(LanguageBundle.get("menu.tools.mirror.z"));
 		mirrorZ.setMnemonic(KeyEvent.VK_Z);
 		mirrorZ.addActionListener(mirrorZAction);
 		mirrorSubmenu.add(mirrorZ);
 
 		mirrorSubmenu.add(new JSeparator());
 
-		mirrorFlip = new JCheckBoxMenuItem("Automatically flip after mirror (preserves surface)", true);
+		mirrorFlip = new JCheckBoxMenuItem(LanguageBundle.get("menu.tools.mirror.auto_flip"), true);
 		mirrorFlip.setMnemonic(KeyEvent.VK_A);
 		mirrorSubmenu.add(mirrorFlip);
 
-		textureModels = new JCheckBoxMenuItem("Texture Models", true);
+		textureModels = new JCheckBoxMenuItem(LanguageBundle.get("menu.view.texture_models"), true);
 		textureModels.setMnemonic(KeyEvent.VK_T);
 		textureModels.setSelected(true);
 		textureModels.addActionListener(this);
 		viewMenu.add(textureModels);
 
-		newDirectory = new JMenuItem("Change Game Directory");
+		newDirectory = new JMenuItem(LanguageBundle.get("menu.view.change_directory"));
 		newDirectory.setAccelerator(KeyStroke.getKeyStroke("control shift D"));
 		newDirectory.setToolTipText("Changes the directory from which to load texture files for the 3D display.");
 		newDirectory.setMnemonic(KeyEvent.VK_D);
@@ -3992,20 +3993,20 @@ public class MainPanel extends JPanel
 
 		viewMenu.add(new JSeparator());
 
-		showVertexModifyControls = new JCheckBoxMenuItem("Show Viewport Buttons", true);
+		showVertexModifyControls = new JCheckBoxMenuItem(LanguageBundle.get("menu.view.show_viewport_buttons"), true);
 		// showVertexModifyControls.setMnemonic(KeyEvent.VK_V);
 		showVertexModifyControls.addActionListener(this);
 		viewMenu.add(showVertexModifyControls);
 
 		viewMenu.add(new JSeparator());
 
-		showNormals = new JCheckBoxMenuItem("Show Normals", true);
+		showNormals = new JCheckBoxMenuItem(LanguageBundle.get("menu.view.show_normals"), true);
 		showNormals.setMnemonic(KeyEvent.VK_N);
 		showNormals.setSelected(false);
 		showNormals.addActionListener(this);
 		viewMenu.add(showNormals);
 
-		viewMode = new JMenu("3D View Mode");
+		viewMode = new JMenu(LanguageBundle.get("menu.view.3d_view_mode"));
 		viewMenu.add(viewMode);
 
 		viewModes = new ButtonGroup();
@@ -4038,13 +4039,13 @@ public class MainPanel extends JPanel
 
 		viewModes.setSelected(solid.getModel(), true);
 
-		newModel = new JMenuItem("New");
+		newModel = new JMenuItem(LanguageBundle.get("menu.file.new"));
 		newModel.setAccelerator(KeyStroke.getKeyStroke("control N"));
 		newModel.setMnemonic(KeyEvent.VK_N);
 		newModel.addActionListener(this);
 		fileMenu.add(newModel);
 
-		open = new JMenuItem("Open");
+		open = new JMenuItem(LanguageBundle.get("menu.file.open"));
 		open.setAccelerator(KeyStroke.getKeyStroke("control O"));
 		open.setMnemonic(KeyEvent.VK_O);
 		open.addActionListener(this);
@@ -4052,29 +4053,29 @@ public class MainPanel extends JPanel
 
 		fileMenu.add(recentMenu);
 
-		fetch = new JMenu("Open Internal");
+		fetch = new JMenu(LanguageBundle.get("menu.file.open_internal"));
 		fetch.setMnemonic(KeyEvent.VK_F);
 		fileMenu.add(fetch);
 
-		fetchUnit = new JMenuItem("Unit");
+		fetchUnit = new JMenuItem(LanguageBundle.get("menu.file.open_internal.unit"));
 		fetchUnit.setAccelerator(KeyStroke.getKeyStroke("control U"));
 		fetchUnit.setMnemonic(KeyEvent.VK_U);
 		fetchUnit.addActionListener(this);
 		fetch.add(fetchUnit);
 
-		fetchModel = new JMenuItem("Model");
+		fetchModel = new JMenuItem(LanguageBundle.get("menu.file.open_internal.model"));
 		fetchModel.setAccelerator(KeyStroke.getKeyStroke("control M"));
 		fetchModel.setMnemonic(KeyEvent.VK_M);
 		fetchModel.addActionListener(this);
 		fetch.add(fetchModel);
 
-		fetchObject = new JMenuItem("Object Editor");
+		fetchObject = new JMenuItem(LanguageBundle.get("menu.file.open_internal.object_editor"));
 		fetchObject.setAccelerator(KeyStroke.getKeyStroke("control O"));
 		fetchObject.setMnemonic(KeyEvent.VK_O);
 		fetchObject.addActionListener(this);
 		fetch.add(fetchObject);
 
-		recentFetchMenu = new JMenu("Recent");
+		recentFetchMenu = new JMenu(LanguageBundle.get("menu.file.open_internal.recent"));
 		recentFetchMenu.setMnemonic(KeyEvent.VK_R);
 		recentFetchMenu.getAccessibleContext()
 				.setAccessibleDescription("Allows you to access recently opened internal files.");
@@ -4082,7 +4083,7 @@ public class MainPanel extends JPanel
 
 		recentFetchMenu.add(new JSeparator());
 
-		clearRecentFetch = new JMenuItem("Clear");
+		clearRecentFetch = new JMenuItem(LanguageBundle.get("menu.clear"));
 		clearRecentFetch.setMnemonic(KeyEvent.VK_C);
 		clearRecentFetch.addActionListener(this);
 		recentFetchMenu.add(clearRecentFetch);
@@ -4091,7 +4092,7 @@ public class MainPanel extends JPanel
 
 		fetch.add(new JSeparator());
 
-		fetchPortraitsToo = new JCheckBoxMenuItem("Fetch portraits, too!", true);
+		fetchPortraitsToo = new JCheckBoxMenuItem(LanguageBundle.get("menu.file.fetch_portraits"), true);
 		fetchPortraitsToo.setMnemonic(KeyEvent.VK_P);
 		fetchPortraitsToo.setSelected(true);
 		fetchPortraitsToo.addActionListener(new ActionListener() {
@@ -4106,44 +4107,44 @@ public class MainPanel extends JPanel
 
 		fileMenu.add(new JSeparator());
 
-		importMenu = new JMenu("Import");
+		importMenu = new JMenu(LanguageBundle.get("menu.file.import"));
 		importMenu.setMnemonic(KeyEvent.VK_I);
 		fileMenu.add(importMenu);
 
-		importButton = new JMenuItem("From File");
+		importButton = new JMenuItem(LanguageBundle.get("menu.file.import.from_file"));
 		importButton.setAccelerator(KeyStroke.getKeyStroke("control shift I"));
 		importButton.setMnemonic(KeyEvent.VK_I);
 		importButton.addActionListener(this);
 		importMenu.add(importButton);
 
-		importUnit = new JMenuItem("From Unit");
+		importUnit = new JMenuItem(LanguageBundle.get("menu.file.import.from_unit"));
 		importUnit.setMnemonic(KeyEvent.VK_U);
 		importUnit.setAccelerator(KeyStroke.getKeyStroke("control shift U"));
 		importUnit.addActionListener(this);
 		importMenu.add(importUnit);
 
-		importGameModel = new JMenuItem("From WC3 Model");
+		importGameModel = new JMenuItem(LanguageBundle.get("menu.file.import.from_wc3_model"));
 		importGameModel.setMnemonic(KeyEvent.VK_M);
 		importGameModel.addActionListener(this);
 		importMenu.add(importGameModel);
 
-		importGameObject = new JMenuItem("From Object Editor");
+		importGameObject = new JMenuItem(LanguageBundle.get("menu.file.import.from_object_editor"));
 		importGameObject.setMnemonic(KeyEvent.VK_O);
 		importGameObject.addActionListener(this);
 		importMenu.add(importGameObject);
 
-		importFromWorkspace = new JMenuItem("From Workspace");
+		importFromWorkspace = new JMenuItem(LanguageBundle.get("menu.file.import.from_workspace"));
 		importFromWorkspace.setMnemonic(KeyEvent.VK_O);
 		importFromWorkspace.addActionListener(this);
 		importMenu.add(importFromWorkspace);
 
-		save = new JMenuItem("Save");
+		save = new JMenuItem(LanguageBundle.get("menu.file.save"));
 		save.setMnemonic(KeyEvent.VK_S);
 		save.setAccelerator(KeyStroke.getKeyStroke("control S"));
 		save.addActionListener(this);
 		fileMenu.add(save);
 
-		saveAs = new JMenuItem("Save as");
+		saveAs = new JMenuItem(LanguageBundle.get("menu.file.save_as"));
 		saveAs.setMnemonic(KeyEvent.VK_A);
 		saveAs.setAccelerator(KeyStroke.getKeyStroke("control Q"));
 		saveAs.addActionListener(this);
@@ -4151,14 +4152,14 @@ public class MainPanel extends JPanel
 
 		fileMenu.add(new JSeparator());
 
-		exportTextures = new JMenuItem("Export Texture");
+		exportTextures = new JMenuItem(LanguageBundle.get("menu.file.export_texture"));
 		exportTextures.setMnemonic(KeyEvent.VK_E);
 		exportTextures.addActionListener(this);
 		fileMenu.add(exportTextures);
 
 		fileMenu.add(new JSeparator());
 
-		revert = new JMenuItem("Revert");
+		revert = new JMenuItem(LanguageBundle.get("menu.file.revert"));
 		revert.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(final ActionEvent e) {
@@ -4184,7 +4185,7 @@ public class MainPanel extends JPanel
 		});
 		fileMenu.add(revert);
 
-		close = new JMenuItem("Close");
+		close = new JMenuItem(LanguageBundle.get("menu.file.close"));
 		close.setAccelerator(KeyStroke.getKeyStroke("control E"));
 		close.setMnemonic(KeyEvent.VK_E);
 		close.addActionListener(this);
@@ -4192,7 +4193,7 @@ public class MainPanel extends JPanel
 
 		fileMenu.add(new JSeparator());
 
-		exit = new JMenuItem("Exit");
+		exit = new JMenuItem(LanguageBundle.get("menu.file.exit"));
 		exit.setMnemonic(KeyEvent.VK_E);
 		exit.addActionListener(new ActionListener() {
 			@Override
@@ -4220,21 +4221,21 @@ public class MainPanel extends JPanel
 
 		editMenu.add(new JSeparator());
 
-		final JMenu optimizeMenu = new JMenu("Optimize");
+		final JMenu optimizeMenu = new JMenu(LanguageBundle.get("menu.edit.optimize"));
 		optimizeMenu.setMnemonic(KeyEvent.VK_O);
 		editMenu.add(optimizeMenu);
 
-		linearizeAnimations = new JMenuItem("Linearize Animations");
+		linearizeAnimations = new JMenuItem(LanguageBundle.get("menu.edit.optimize.linearize"));
 		linearizeAnimations.setMnemonic(KeyEvent.VK_L);
 		linearizeAnimations.addActionListener(this);
 		optimizeMenu.add(linearizeAnimations);
 
-		simplifyKeyframes = new JMenuItem("Simplify Keyframes (Experimental)");
+		simplifyKeyframes = new JMenuItem(LanguageBundle.get("menu.edit.optimize.simplify"));
 		simplifyKeyframes.setMnemonic(KeyEvent.VK_K);
 		simplifyKeyframes.addActionListener(this);
 		optimizeMenu.add(simplifyKeyframes);
 
-		final JMenuItem minimizeGeoset = new JMenuItem("Minimize Geosets");
+		final JMenuItem minimizeGeoset = new JMenuItem(LanguageBundle.get("menu.edit.optimize.minimize_geosets"));
 		minimizeGeoset.setMnemonic(KeyEvent.VK_K);
 		minimizeGeoset.addActionListener(new ActionListener() {
 			@Override
@@ -4330,7 +4331,7 @@ public class MainPanel extends JPanel
 		});
 		optimizeMenu.add(minimizeGeoset);
 
-		sortBones = new JMenuItem("Sort Nodes");
+		sortBones = new JMenuItem(LanguageBundle.get("menu.edit.optimize.sort_nodes"));
 		sortBones.setMnemonic(KeyEvent.VK_S);
 		sortBones.addActionListener(new ActionListener() {
 			@Override
@@ -4362,17 +4363,17 @@ public class MainPanel extends JPanel
 		});
 		optimizeMenu.add(sortBones);
 
-		final JMenuItem flushUnusedTexture = new JMenuItem("Flush Unused Texture");
+		final JMenuItem flushUnusedTexture = new JMenuItem(LanguageBundle.get("menu.edit.optimize.flush_unused_texture"));
 		flushUnusedTexture.setEnabled(false);
 		flushUnusedTexture.setMnemonic(KeyEvent.VK_F);
 		optimizeMenu.add(flushUnusedTexture);
 
-		final JMenuItem recalcNormals = new JMenuItem("Recalculate Normals");
+		final JMenuItem recalcNormals = new JMenuItem(LanguageBundle.get("menu.edit.recalc_normals"));
 		recalcNormals.setAccelerator(KeyStroke.getKeyStroke("control N"));
 		recalcNormals.addActionListener(recalcNormalsAction);
 		editMenu.add(recalcNormals);
 
-		final JMenuItem recalcExtents = new JMenuItem("Recalculate Extents");
+		final JMenuItem recalcExtents = new JMenuItem(LanguageBundle.get("menu.edit.recalc_extents"));
 		recalcExtents.setAccelerator(KeyStroke.getKeyStroke("control shift E"));
 		recalcExtents.addActionListener(recalcExtentsAction);
 		editMenu.add(recalcExtents);
@@ -4397,25 +4398,25 @@ public class MainPanel extends JPanel
 				}
 			}
 		};
-		cut = new JMenuItem("Cut");
+		cut = new JMenuItem(LanguageBundle.get("menu.edit.cut"));
 		cut.addActionListener(copyActionListener);
 		cut.setActionCommand((String) TransferHandler.getCutAction().getValue(Action.NAME));
 		cut.setAccelerator(KeyStroke.getKeyStroke("control X"));
 		editMenu.add(cut);
 
-		copy = new JMenuItem("Copy");
+		copy = new JMenuItem(LanguageBundle.get("menu.edit.copy"));
 		copy.addActionListener(copyActionListener);
 		copy.setActionCommand((String) TransferHandler.getCopyAction().getValue(Action.NAME));
 		copy.setAccelerator(KeyStroke.getKeyStroke("control C"));
 		editMenu.add(copy);
 
-		paste = new JMenuItem("Paste");
+		paste = new JMenuItem(LanguageBundle.get("menu.edit.paste"));
 		paste.addActionListener(copyActionListener);
 		paste.setActionCommand((String) TransferHandler.getPasteAction().getValue(Action.NAME));
 		paste.setAccelerator(KeyStroke.getKeyStroke("control V"));
 		editMenu.add(paste);
 
-		duplicateSelection = new JMenuItem("Duplicate");
+		duplicateSelection = new JMenuItem(LanguageBundle.get("menu.edit.duplicate"));
 		// divideVertices.setMnemonic(KeyEvent.VK_V);
 		duplicateSelection.setAccelerator(KeyStroke.getKeyStroke("control D"));
 		duplicateSelection.addActionListener(cloneAction);
@@ -4423,43 +4424,43 @@ public class MainPanel extends JPanel
 
 		editMenu.add(new JSeparator());
 
-		snapVertices = new JMenuItem("Snap Vertices");
+		snapVertices = new JMenuItem(LanguageBundle.get("menu.edit.snap_vertices"));
 		snapVertices.setAccelerator(KeyStroke.getKeyStroke("control shift W"));
 		snapVertices.addActionListener(snapVerticesAction);
 		editMenu.add(snapVertices);
 
-		snapNormals = new JMenuItem("Snap Normals");
+		snapNormals = new JMenuItem(LanguageBundle.get("menu.edit.snap_normals"));
 		snapNormals.setAccelerator(KeyStroke.getKeyStroke("control L"));
 		snapNormals.addActionListener(snapNormalsAction);
 		editMenu.add(snapNormals);
 
 		editMenu.add(new JSeparator());
 
-		selectAll = new JMenuItem("Select All");
+		selectAll = new JMenuItem(LanguageBundle.get("menu.edit.select_all"));
 		selectAll.setAccelerator(KeyStroke.getKeyStroke("control A"));
 		selectAll.addActionListener(selectAllAction);
 		editMenu.add(selectAll);
 
-		invertSelect = new JMenuItem("Invert Selection");
+		invertSelect = new JMenuItem(LanguageBundle.get("menu.edit.invert_selection"));
 		invertSelect.setAccelerator(KeyStroke.getKeyStroke("control I"));
 		invertSelect.addActionListener(invertSelectAction);
 		editMenu.add(invertSelect);
 
-		expandSelection = new JMenuItem("Expand Selection");
+		expandSelection = new JMenuItem(LanguageBundle.get("menu.edit.expand_selection"));
 		expandSelection.setAccelerator(KeyStroke.getKeyStroke("control E"));
 		expandSelection.addActionListener(expandSelectionAction);
 		editMenu.add(expandSelection);
 
 		editMenu.addSeparator();
 
-		final JMenuItem deleteButton = new JMenuItem("Delete");
+		final JMenuItem deleteButton = new JMenuItem(LanguageBundle.get("menu.edit.delete"));
 		deleteButton.setMnemonic(KeyEvent.VK_D);
 		deleteButton.addActionListener(deleteAction);
 		editMenu.add(deleteButton);
 
 		editMenu.addSeparator();
 
-		preferencesWindow = new JMenuItem("Preferences Window");
+		preferencesWindow = new JMenuItem(LanguageBundle.get("menu.edit.preferences"));
 		preferencesWindow.setMnemonic(KeyEvent.VK_P);
 		preferencesWindow.addActionListener(openPreferencesAction);
 		editMenu.add(preferencesWindow);
