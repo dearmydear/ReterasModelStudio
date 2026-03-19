@@ -49,6 +49,7 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 import com.hiveworkshop.wc3.gui.ExceptionPopup;
+import com.hiveworkshop.wc3.gui.LocalizedFontHelper;
 import com.hiveworkshop.wc3.gui.ProgramPreferences;
 import com.hiveworkshop.wc3.gui.icons.RMSIcons;
 import com.hiveworkshop.wc3.gui.modeledit.SmartMappingChooserPanel.Pairing;
@@ -2279,7 +2280,7 @@ class GeosetPanel extends JPanel implements ChangeListener {
 		isImported = imported;
 
 		geoTitle = new JLabel(model.getName() + " " + (index + 1));
-		geoTitle.setFont(new Font("Arial", Font.BOLD, 26));
+		geoTitle.setFont(LocalizedFontHelper.getSansFont(Font.BOLD, 26));
 
 		doImport = new JCheckBox("Import this Geoset");
 		doImport.setSelected(true);
@@ -2352,7 +2353,7 @@ class GeosetPanel extends JPanel implements ChangeListener {
 class MaterialListCellRenderer extends DefaultListCellRenderer {
 	EditableModel myModel;
 	Object myMaterial;
-	Font theFont = new Font("Arial", Font.BOLD, 32);
+	Font theFont = LocalizedFontHelper.getSansFont(Font.BOLD, 32);
 	HashMap<Material, ImageIcon> map = new HashMap<>();
 
 	public MaterialListCellRenderer(final EditableModel model) {
@@ -2444,7 +2445,7 @@ class AnimPanel extends JPanel implements ChangeListener, ItemListener, ListSele
 		this.anim = anim;
 
 		title = new JLabel(anim.getName());
-		title.setFont(new Font("Arial", Font.BOLD, 26));
+		title.setFont(LocalizedFontHelper.getSansFont(Font.BOLD, 26));
 
 		doImport = new JCheckBox("Import this Sequence");
 		doImport.setSelected(true);
@@ -2716,7 +2717,7 @@ class BonePanel extends JPanel implements ListSelectionListener, ActionListener 
 		}
 
 		title = new JLabel(bone.getClass().getSimpleName() + " \"" + bone.getName() + "\"");
-		title.setFont(new Font("Arial", Font.BOLD, 26));
+		title.setFont(LocalizedFontHelper.getSansFont(Font.BOLD, 26));
 
 		importTypeBox.setEditable(false);
 //		importTypeBox.addItemListener(this);
@@ -2947,7 +2948,7 @@ class MultiBonePanel extends BonePanel {
 		existingBones = existingBonesList;
 
 		title = new JLabel("Multiple Selected");
-		title.setFont(new Font("Arial", Font.BOLD, 26));
+		title.setFont(LocalizedFontHelper.getSansFont(Font.BOLD, 26));
 
 		importTypeBox.setEditable(false);
 		importTypeBox.addActionListener(this);
@@ -3593,7 +3594,7 @@ class ObjectPanel extends JPanel {
 		object = whichObject;
 
 		title = new JLabel(object.getClass().getSimpleName() + " \"" + object.getName() + "\"");
-		title.setFont(new Font("Arial", Font.BOLD, 26));
+		title.setFont(LocalizedFontHelper.getSansFont(Font.BOLD, 26));
 
 		doImport = new JCheckBox("Import this object");
 		doImport.setSelected(true);
@@ -3631,7 +3632,7 @@ class ObjectPanel extends JPanel {
 		camera = c;
 
 		title = new JLabel(c.getClass().getSimpleName() + " \"" + c.getName() + "\"");
-		title.setFont(new Font("Arial", Font.BOLD, 26));
+		title.setFont(LocalizedFontHelper.getSansFont(Font.BOLD, 26));
 
 		doImport = new JCheckBox("Import this object");
 		doImport.setSelected(true);
@@ -3651,7 +3652,7 @@ class ObjectPanel extends JPanel {
 class MultiObjectPanel extends ObjectPanel implements ChangeListener {
 	public MultiObjectPanel(final DefaultListModel<BoneShell> possibleParents) {
 		title = new JLabel("Multiple Selected");
-		title.setFont(new Font("Arial", Font.BOLD, 26));
+		title.setFont(LocalizedFontHelper.getSansFont(Font.BOLD, 26));
 
 		doImport = new JCheckBox("Import these objects (click to apply to all)");
 		doImport.setSelected(true);
@@ -3773,7 +3774,7 @@ class VisibilityPane extends JPanel {
 			final DefaultComboBoxModel newSources, final ListCellRenderer renderer) {
 		this.sourceShell = sourceShell;
 		title = new JLabel(sourceShell.model.getName() + ": " + sourceShell.source.getName());
-		title.setFont(new Font("Arial", Font.BOLD, 26));
+		title.setFont(LocalizedFontHelper.getSansFont(Font.BOLD, 26));
 
 		oldAnimsLabel = new JLabel("Existing animation visibility from: ");
 		oldSourcesBox = new JComboBox(oldSources);
@@ -3852,7 +3853,7 @@ class MultiVisibilityPane extends VisibilityPane implements ChangeListener, Item
 	public MultiVisibilityPane(final DefaultComboBoxModel oldSources, final DefaultComboBoxModel newSources,
 			final ListCellRenderer renderer) {
 		title = new JLabel("Multiple Selected");
-		title.setFont(new Font("Arial", Font.BOLD, 26));
+		title.setFont(LocalizedFontHelper.getSansFont(Font.BOLD, 26));
 
 		oldAnimsLabel = new JLabel("Existing animation visibility from: ");
 		oldSourcesBox = new JComboBox(oldSources);

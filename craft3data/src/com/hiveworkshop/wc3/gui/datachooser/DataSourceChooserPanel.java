@@ -57,6 +57,7 @@ import com.hiveworkshop.blizzard.casc.io.WarcraftIIICASC;
 import com.hiveworkshop.blizzard.casc.io.WarcraftIIICASC.FileSystem;
 import com.hiveworkshop.nio.ByteBufferInputStream;
 import com.hiveworkshop.wc3.gui.ExceptionPopup;
+import com.hiveworkshop.wc3.gui.LocalizedFontHelper;
 import com.hiveworkshop.wc3.gui.datachooser.CascDataSource.Product;
 import com.hiveworkshop.wc3.gui.icons.RMSIcons;
 import com.hiveworkshop.wc3.user.WindowsRegistry;
@@ -396,8 +397,8 @@ public class DataSourceChooserPanel extends JPanel {
 		separatorLabelLeftHandSide.setAlignmentX(JLabel.CENTER_ALIGNMENT);
 		final JLabel warcraft3InstallLocated = new JLabel("'Path' Registry Key: ");
 		final JLabel warcraft3InstallPath = new JLabel(wcDirectory == null ? "Not found" : wcDirectory);
-		warcraft3InstallLocated.setFont(new Font("Consolas", Font.BOLD, getFont().getSize()));
-		warcraft3InstallPath.setFont(new Font("Consolas", Font.PLAIN, getFont().getSize()));
+		warcraft3InstallLocated.setFont(LocalizedFontHelper.getMonospaceFont(Font.BOLD, getFont().getSize()));
+		warcraft3InstallPath.setFont(LocalizedFontHelper.getMonospaceFont(Font.PLAIN, getFont().getSize()));
 		if (wcDirectory == null) {
 			warcraft3InstallPath.setForeground(Color.RED);
 		}

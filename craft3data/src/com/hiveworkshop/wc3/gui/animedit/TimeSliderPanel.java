@@ -49,6 +49,7 @@ import javax.swing.SwingUtilities;
 import javax.swing.Timer;
 
 import com.hiveworkshop.wc3.gui.GUITheme;
+import com.hiveworkshop.wc3.gui.LocalizedFontHelper;
 import com.hiveworkshop.wc3.gui.ProgramPreferences;
 import com.hiveworkshop.wc3.gui.animedit.TimeSliderPanel.KeyFrame;
 import com.hiveworkshop.wc3.gui.animedit.TimeSliderTimeListener.TimeSliderTimeNotifier;
@@ -133,7 +134,7 @@ public class TimeSliderPanel extends JPanel implements TimeBoundChangeListener, 
 		start = timeBoundProvider.getStart();
 		end = timeBoundProvider.getEnd();
 		setForeground(Color.WHITE);
-		setFont(new Font("Courier New", Font.PLAIN, 12));
+		setFont(LocalizedFontHelper.getMonospaceFont(Font.PLAIN, 12));
 		timeChooserRect = new Rectangle(0, 0, SLIDING_TIME_CHOOSER_WIDTH, VERTICAL_SLIDER_HEIGHT);
 		this.popupMenu = new JPopupMenu();
 		this.copiedKeyframes = new ArrayList<>();

@@ -113,6 +113,7 @@ import org.lwjgl.util.vector.Vector4f;
 import com.hiveworkshop.wc3.gui.BLPHandler;
 import com.hiveworkshop.wc3.gui.ExceptionPopup;
 import com.hiveworkshop.wc3.gui.GUIUtils;
+import com.hiveworkshop.wc3.gui.LocalizedFontHelper;
 import com.hiveworkshop.wc3.gui.ProgramPreferences;
 import com.hiveworkshop.wc3.gui.animedit.ControllableTimeBoundProvider;
 import com.hiveworkshop.wc3.gui.animedit.TimeBoundChangeListener;
@@ -3009,7 +3010,7 @@ public class MainPanel extends JPanel
 								final JLabel imageLabel = new JLabel(
 										new ImageIcon(image.getScaledInstance(128, 128, Image.SCALE_SMOOTH)));
 								final JLabel titleLabel = new JLabel("Add " + basicName);
-								titleLabel.setFont(new Font("Arial", Font.BOLD, 28));
+								titleLabel.setFont(LocalizedFontHelper.getSansFont(Font.BOLD, 28));
 
 								final JLabel nameLabel = new JLabel("Particle Name:");
 								final JTextField nameField = new JTextField("MyBlizParticle");

@@ -10,6 +10,7 @@ import javax.swing.DefaultListCellRenderer;
 import javax.swing.ImageIcon;
 import javax.swing.JList;
 
+import com.hiveworkshop.wc3.gui.LocalizedFontHelper;
 import com.hiveworkshop.wc3.mdl.Bitmap;
 import com.hiveworkshop.wc3.mdl.EditableModel;
 
@@ -17,7 +18,7 @@ public class BitmapListCellRenderer extends DefaultListCellRenderer {
 	private static final Bitmap NO_VALUE_BITMAP = new Bitmap("Textures\\White.blp");
 	EditableModel model;
 	HashMap<Bitmap, ImageIcon> map = new HashMap<Bitmap, ImageIcon>();
-	Font theFont = new Font("Arial", Font.BOLD, 32);
+	Font theFont = LocalizedFontHelper.getSansFont(Font.BOLD, 32);
 
 	public BitmapListCellRenderer(final EditableModel model) {
 		this.model = model;
