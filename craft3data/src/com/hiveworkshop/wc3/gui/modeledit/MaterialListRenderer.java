@@ -10,13 +10,14 @@ import javax.swing.DefaultListCellRenderer;
 import javax.swing.ImageIcon;
 import javax.swing.JList;
 
+import com.hiveworkshop.wc3.gui.LocalizedFontHelper;
 import com.hiveworkshop.wc3.mdl.EditableModel;
 import com.hiveworkshop.wc3.mdl.Material;
 
 public class MaterialListRenderer extends DefaultListCellRenderer {
 	EditableModel model;
 	HashMap<Material, ImageIcon> map = new HashMap<Material, ImageIcon>();
-	Font theFont = new Font("Arial", Font.BOLD, 32);
+	Font theFont = LocalizedFontHelper.getSansFont(Font.BOLD, 32);
 
 	public MaterialListRenderer(final EditableModel model) {
 		this.model = model;

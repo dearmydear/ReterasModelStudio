@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.lang.Thread.UncaughtExceptionHandler;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
@@ -25,6 +26,7 @@ import javax.swing.plaf.ColorUIResource;
 import com.badlogic.gdx.backends.lwjgl.LwjglNativesLoader;
 import com.hiveworkshop.wc3.gui.BLPHandler;
 import com.hiveworkshop.wc3.gui.ExceptionPopup;
+import com.hiveworkshop.wc3.gui.LanguageBundle;
 import com.hiveworkshop.wc3.gui.ProgramPreferences;
 import com.hiveworkshop.wc3.gui.datachooser.DataSourceChooserPanel;
 import com.hiveworkshop.wc3.gui.datachooser.DataSourceDescriptor;
@@ -152,6 +154,15 @@ public class MainFrame extends JFrame {
 		final boolean dataPromptForced = hasArgs && args[0].equals("-forcedataprompt");
 		try {
 			final ProgramPreferences preferences = SaveProfile.get().getPreferences();
+			// Initialize UI language from saved preference before any UI is constructed
+			final String lang = preferences.getUiLanguage();
+			if (lang == null || lang.isEmpty()) {
+				LanguageBundle.setLocale(Locale.getDefault());
+			}
+			else {
+				// Use BCP-47 style (replace underscore with hyphen for forLanguageTag)
+				LanguageBundle.setLocale(Locale.forLanguageTag(lang.replace('_', '-')));
+			}
 			if ((preferences.getDisableDirectXToSolveVisualArtifacts() != null)
 					&& preferences.getDisableDirectXToSolveVisualArtifacts()) {
 				System.setProperty("sun.java2d.opengl", "True");

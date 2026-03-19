@@ -6,11 +6,12 @@ import java.awt.Font;
 import javax.swing.DefaultListCellRenderer;
 import javax.swing.JList;
 
+import com.hiveworkshop.wc3.gui.LocalizedFontHelper;
 import com.hiveworkshop.wc3.mdl.EditableModel;
 import com.hiveworkshop.wc3.mdl.TextureAnim;
 
 public class TextureAnimListCellRenderer extends DefaultListCellRenderer {
-	Font theFont = new Font("Arial", Font.BOLD, 32);
+	Font theFont = LocalizedFontHelper.getSansFont(Font.BOLD, 32);
 	private final EditableModel model;
 
 	public TextureAnimListCellRenderer(final EditableModel model) {
